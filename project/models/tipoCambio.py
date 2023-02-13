@@ -1,15 +1,14 @@
 import db
-import pandas as pd
 
-class ModelProducto():
+class ModelTipo():
     def __init__(self):
         self.db=db.Conection('project/tienda.db')
     def getTipo(self):
         cursor=self.db.getCursor()
-        data=cursor.execute('select * from TABLE_PRODUCTOS').fetchall()
+        data=cursor.execute('select * from TASA_CAMBIOS').fetchall()
         return data
-    def insertProducto(self,data):
-        inserSentence="INSERT INTO TABLE_PRODUCTOS (PRODUCT_ID,NAMEPRODUCT,NROSERIE,PRODUCT,PRICE_UNIT,CATEGORIA,STOCK_ACUTAL) VALUES(?,?,?,?,?,?,?)"
+    def insertTipo(self,data):
+        inserSentence="INSERT INTO TASA_CAMBIOS (COMPRA,VENTA,MONEDA,FECHA_CAMBIO) VALUES(?,?,?,?)"
         cursor=self.db.getCursor()
         cursor.execute(inserSentence,data)
         self.db.con.commit()

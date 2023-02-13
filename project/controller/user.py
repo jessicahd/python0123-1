@@ -10,3 +10,4 @@ def controllerUser():
 def insertUser(data):
     user=md.ModelUser()
     user.insertUser(data)
+    
