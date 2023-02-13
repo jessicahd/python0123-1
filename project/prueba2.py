@@ -10,18 +10,18 @@ def main():
 
 def leer_archivos():
     print("Leyendo archivos")
-    input_cols=[0,5,7,8,12]
+    input_cols=[1,4,5,6]
     path='project'
-    filename=input("Ingrese el nombre del archivo a leer (solo dataTienda)(.csv): ") + ".csv" #se ingresa: dataTienda
+    filename=input("Ingrese el nombre del archivo a leer (solo Productos)(.xlsx): ") + ".xlsx" ##se ingresa: Productos
     fullpath=os.path.join(path,filename)
     print("Se está leyendo el archivo "+ fullpath)
-    archivoExcel=pd.read_csv(fullpath,header=0,delimiter=';',usecols=input_cols)
+    archivoExcel=pd.read_excel(fullpath,sheet_name='Sheet1',usecols=input_cols)
     return archivoExcel
-    #print(archivoExcel)
+   
 
 def agregarFiltros(archivoExcel):
-    print("Agregando filtros... Mostrar información del usuario USER2")
-    archivoExcel=archivoExcel[archivoExcel["USER_CLIENT"]=="USER2"]
+    print("Agregando filtros... Mostrar información del stock que debe ser observado")
+    archivoExcel=archivoExcel[archivoExcel["STOCK_ACUTAL"]<=50]
     return archivoExcel
 
 def vista_data(archivoExcel):
@@ -32,7 +32,7 @@ def vista_data(archivoExcel):
 
 def exportar_data(archivoExcel):    
     print("...Exportando data a excel...")
-    archivoExcel.to_excel('project/reporte.xlsx',header=True,index=False)
+    archivoExcel.to_excel('project/reporteProductos.xlsx',header=True,index=False)
 
 if __name__=="__main__":
     main()

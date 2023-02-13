@@ -17,21 +17,6 @@ table = """ CREATE TABLE USUARIOS (
 
 cursor_obj.execute(table)
 
-cursor_obj.execute("DROP TABLE IF EXISTS PRODUCTOS")
-table = """ CREATE TABLE PRODUCTOS (
-            PRODUCT_ID  INTEGER PRIMARY KEY AUTOINCREMENT,
-            NAMEPRODUCT VARCHAR(255) NOT NULL,
-            NROSERIE VARCHAR(255) NOT NULL,
-            PRODUCT VARCHAR(255) NOT NULL,
-            PRICE_UNIT VARCHAR(20) NOT NULL, 
-            CATEGORIA VARCHAR(25) NOT NULL,
-            STOCK_ACUTAL INT,
-            CREACTION_PRODUCT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            UPDATE_PRODUCT TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        ); """
-
-cursor_obj.execute(table)
-
 cursor_obj.execute("DROP TABLE IF EXISTS VENTA")
 table=""" CREATE TABLE VENTA (
             ORDERID  INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -69,6 +54,18 @@ insert="INSERT INTO PRODUCTOS(NAMEPRODUCT,PRICE,CATEGORIA,STCOKACTUAL) VALUES(?,
 data=(nameProduct,price,categria,stock)
 conn.execute(insert,data)
 """
+cursor_obj.execute("DROP TABLE IF EXISTS TABLE_PRODUCTOS")
+table="""  CREATE TABLE TABLE_PRODUCTOS(
+            PRODUCT_ID  VARCHAR(25) PRIMARY KEY,
+            NAMEPRODUCT VARCHAR(255) NOT NULL,
+            NROSERIE VARCHAR(255) NOT NULL,
+            PRODUCT VARCHAR(255) NOT NULL,
+            PRICE_UNIT VARCHAR(20) NOT NULL, 
+            CATEGORIA VARCHAR(25) NOT NULL,
+            STOCK_ACUTAL VARCHAR(25) NOT NULL
+        ); """
+cursor_obj.execute(table)
+
 #2. Debe crear una tabla para poder insertar la información de la tasa de cambios
 cursor_obj.execute("DROP TABLE IF EXISTS TASA_CAMBIOS")
 table = """ CREATE TABLE TASA_CAMBIOS (
@@ -81,14 +78,4 @@ table = """ CREATE TABLE TASA_CAMBIOS (
 cursor_obj.execute(table)
 
 
-cursor_obj.execute("DROP TABLE IF EXISTS TABLE_PRODUCTOS")
-table="""  CREATE TABLE TABLE_PRODUCTOS(
-            PRODUCT_ID  INTEGER PRIMARY KEY,
-            NAMEPRODUCT VARCHAR(255) NOT NULL,
-            NROSERIE VARCHAR(255) NOT NULL,
-            PRODUCT VARCHAR(255) NOT NULL,
-            PRICE_UNIT VARCHAR(20) NOT NULL, 
-            CATEGORIA VARCHAR(25) NOT NULL,
-            STOCK_ACUTAL INT NOT NULL
-        ); """
-cursor_obj.execute(table)
+

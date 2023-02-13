@@ -6,6 +6,9 @@ message="""
     3)Ingresar producto
     4)ver lista de productos
 """
+###Para ingresar los datos de los producto a la base de datos, se creo Productos.xlsx para extraer
+###los datos correpondientes al del producto, se ejecuta el proceso en tablaProductos.py
+###
 global option
 option=input('ingrese una opcion: ')
 
